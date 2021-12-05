@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block content %}
+<!-- Uses middle 2-8 columns for form -->
+<div class="row">
+  <div class="col-2"></div>
+  <div class="col-8">
+    <!-- Form -->
+    <form method="post" name="create">
+      <!-- Hidden tag used to show flash on success -->
+      {{ form.hidden_tag() }}
+      <!-- Assessment Title -->
+      <label>Title</label>
+      <!-- If editing assessment -->
+      {% if task != 0 %}
+        {{ form.title(class_="form-control", value=task.title) }}
+      <!-- If creating assessment -->
+      {% else %}
+        {{ form.title(class_="form-control") }}
+      {% endif %}
+      <!-- Displaying errors on validation checks -->
+      {% for error in form.title.errors %}
+      <div class="alert alert-danger w-100" role="alert">
+        {{ error }}
+      </div>
+      {% endfor %}
+      <br>
+      <!-- Assessment Module Code -->
+      <label>Module Code</label>
+      <!-- If editing assessment -->
+      {% if task != 0 %}
+        {{ form.code(class_="form-control", value=task.code) }}
+      <!-- If creating assessment -->
+      {% else %}
+        {{ form.code(class_="form-control") }}
+      {% endif %}
+      {% for error in form.code.errors %}
+      <div class="alert alert-danger" role="alert">
+        {{ error }}
+      </div>
+      {% endfor %}
+      <br>
+      <!-- Assessment Deadline -->
+      <label>Deadline</label>
+      <!-- If editing assessment -->
+      {% if task != 0 %}
+        {{ form.deadline(class_="form-control", value=task.deadline) }}
+      <!-- If creating assessment -->
+      {% else %}
+        {{ form.deadline(class_="form-control") }}
+      {% endif %}
+      {% for error in form.deadline.errors %}
+      <div class="alert alert-danger" role="alert">
+        {{ error }}
+      </div>
+      {% endfor %}
+      <br>
+      <!-- Assessment Description -->
+      <label>Description</label>
+      <!-- If editing assessment -->
+      {% if task != 0 %}
+        {{ form.description(class_="form-control", placeholder=task.description) }}
+      <!-- If creating assessment -->
+      {% else %}
+        {{ form.description(class_="form-control", rows="4") }}
+      {% endif %}
+      {% for error in form.description.errors %}
+      <div class="alert alert-danger" role="alert">
+        {{ error }}
+      </div>
+      {% endfor %}
+      <br>
+      <!-- Edit button -->
+      {% if task != 0 %}
+        <p><input type="submit" class="btn btn-dark" value="Edit"></p>
+      <!-- Create button -->
+      {% else %}
+        <p><input type="submit" class="btn btn-dark" value="Create"></p>
+      {% endif %}
+    </form>
+  </div>
+</div>
+{% endblock %}

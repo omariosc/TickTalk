@@ -1,4 +1,6 @@
 # Runs app
 from app import app
-# Disabled debug mode
-app.run(debug=False)
+
+# Runs app
+if __name__ == "__main__":
+  app.run(debug=True)

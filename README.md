@@ -4,7 +4,7 @@ Flask web application which implements a simple Chat Room. As part of Coursework
 
 ## Link to Deployed Website
 
-`omariosc.pythonaywhere.com`
+`https://omariosc.pythonaywhere.com`
 
 ## List of Implemented Features
 

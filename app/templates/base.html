@@ -17,16 +17,26 @@
   </head>
   <body>
     <!-- Bootstrap navigation bar with toggle button -->
-    <nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark">
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-          <li class="nav-item"><a class="nav-link" href="/">All Assessments</a></li>
-          <li class="nav-item"><a class="nav-link" href="/create">Create Assessment</a></li>
-          <li class="nav-item"><a class="nav-link" href="/complete">Completed Assessments</a></li>
-          <li class="nav-item"><a class="nav-link" href="/uncomplete">Uncompleted Assessments</a></li>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+      <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Room 1</a></li>
+          <li class="nav-item"><a class="nav-link" href="/">Room 2</a></li>
+          <li class="nav-item"><a class="nav-link" href="/">Room 3</a></li>
+          <li class="nav-item"><a class="nav-link" href="/">Room 4</a></li>
+          <li class="nav-item"><a class="nav-link" href="/">Room 5</a></li>
+        </ul>
+      </div>
+      <div class="mx-auto order-0">
+        <a class="navbar-brand mx-auto" href="/">TickTalk</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      </div>
+      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item"><a class="nav-link" href="/">Settings</a></li>
+          <li class="nav-item"><a class="nav-link" href="/">Log Out</a></li>
         </ul>
       </div>
     </nav>

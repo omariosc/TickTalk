@@ -22,4 +22,4 @@ def show():
     else:
       return redirect(url_for('login.show') + '?error=user-not-found')
   else:
-    return render_template('login.html')
+    return render_template('login.html', title="Login")

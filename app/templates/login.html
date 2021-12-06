@@ -4,14 +4,13 @@
 {% endblock %}
 {% block content %}
 <form class="form-signin" method="POST" action="/login">
-  <img class="mb-4" src="/static/favicon.ico" alt="" width="150" height="150">
-  <h1 class="h3 mb-3 font-weight-normal">TickTalk</h1>
+  <img class="mb-4" src="/static/favicon.ico" alt="TickTalk" width="150" height="150">
   <input type="username" style="border-top-left-radius:1;border-top-right-radius:1;border-bottom-right-radius:0;border-bottom-left-radius:0;margin-bottom:-1px;" name="username" class="form-control" placeholder="Username" required autofocus>
   <input type="password" style="border-top-left-radius:0;border-top-right-radius:0;border-bottom-right-radius:1;border-bottom-left-radius:1;margin:0;" name="password" class="form-control" placeholder="Password" required>
   <br>
-  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+  <button class="btn btn-lg btn-dark btn-block" type="submit">Sign in</button>
   <br>
   <label class="h5 mb-3 font-weight-normal">Not Registered?</label>
-  <a href="/register"><button class="btn btn-lg btn-primary btn-block" type="button">Register</button></a>
+  <a href="/register"><button class="btn btn-lg btn-dark btn-block" type="button">Register</button></a>
 </form>
 {% endblock %}

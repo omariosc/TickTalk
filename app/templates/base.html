@@ -18,6 +18,22 @@
     {% endif %}
   </head>
     {% block body %}{% endblock %}
+    <div class="row">
+      <!-- Central columns -->
+      <div class="col-4"></div>
+      <div class="col-5">
+        <!-- Any error message-->
+        {% with messages = get_flashed_messages() %}
+          {% if messages %}
+            {% for message in messages %}
+            <div class="alert alert-success">
+              {{ message }}
+            </div>
+            {% endfor %}
+          {% endif %}
+        {% endwith %}
+      </div>
+    </div>
     {% block content %}{% endblock %}
     <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
     <script src="static/js/cookie.js"></script>

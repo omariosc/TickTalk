@@ -1,6 +1,6 @@
 # Tick Talk
 
-Flask web application which implements a simple Chat Room. As part of Coursework 2 of the COMP2011 Web Application Development module.
+Flask web application which implements simple chat rooms. As part of Coursework 2 of the COMP2011 Web Application Development module.
 
 ## Link to Deployed Website
 
@@ -8,7 +8,7 @@ Flask web application which implements a simple Chat Room. As part of Coursework
 
 ## List of Implemented Features
 
-- Web forms allowing the user to enter data (including client side and server side validation).
+- Web forms allowing the user to enter data (including client side and server-side validation).
 - A database to store information.
 - At least two models.
 - Many-to-many relationship.
@@ -22,20 +22,20 @@ Flask web application which implements a simple Chat Room. As part of Coursework
 
 - Bootstrap
 - JQuery
-- Javascript
+- JavaScript
 - Advanced feature of HTML5 (Geolocation)
 - AJAX & Flask-RESTful
 
 ## Web Forms
 
 - Used field types appropriate to their intended content.
-- Client side/server side validation is applied and informative feedback is provided to the user when incorrect input is provided.
+- Client side/server-side validation is applied and informative feedback is provided to the user when incorrect input is provided.
 - A variety of fields are used within the forms.
 
 ## Database
 
 - Field types appropriate to their intended content are used.
-- Client side/server side validation is applied and informative feedback is provided to the user when incorrect input is provided.
+- Client side/server-side validation is applied and informative feedback is provided to the user when incorrect input is provided.
 - A many-to-many relationship has been implemented (many users to many chat rooms).
 - Validation is applied to ensure the data in the database is consistent.
 - The database makes use of database relationships.
@@ -45,8 +45,8 @@ Flask web application which implements a simple Chat Room. As part of Coursework
 ## Authentication & Sessions
 
 - A new user can register, then log in to their account.
-- Users are able to log in and stay logged in until they log out.
-- Users can log in and personalise their experience whilst logged in.
+- Users can log in and stay logged in until they log out.
+- Users can personalise their experience whilst logged in.
 - Users can change their password.
 - Appropriate privacy warning for usage of cookies.
 

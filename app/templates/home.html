@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-    <!-- Sets title for page -->
+    <link rel="icon" href="/static/favicon.ico">
     {% if title %}
     <title>{{ title }}</title>
     {% else %}
@@ -14,8 +12,7 @@
     {% endif %}
   </head>
   <body>
-    <!-- Bootstrap navigation bar with toggle button -->
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-md navbar-dark bg-primary">
       <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item"><a class="nav-link" href="/room/1">Room 1</a></li>
@@ -26,7 +23,7 @@
         </ul>
       </div>
       <div class="mx-auto order-0">
-        <a class="navbar-brand mx-auto" href="/">TickTalk</a>
+        <a class="navbar-brand mx-auto" href="/home">TickTalk</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -38,35 +35,13 @@
         </ul>
       </div>
     </nav>
-    <!-- Main content-->
     <div class="container-fluid">
-      <div class="row">
-        <!-- Central columns -->
-        <div class="col-4"></div>
-        <div class="col-5">
-          <!-- Any error message-->
-          {% with messages = get_flashed_messages() %}
-            {% if messages %}
-              {% for message in messages %}
-              <div class="alert alert-success">
-                {{ message }}
-              </div>
-              {% endfor %}
-            {% endif %}
-          {% endwith %}
-        </div>
-      </div>
-      <!-- Page title and description -->
       <h2>Welcome {{ current_user.username }}!</h2>
       <br>
-      <!-- Content from templates -->
       {% block content %}{% endblock %}
     </div>
-    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <!-- Popper.js -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-    <!-- Bootstrap JS -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
   </body>
 </html>

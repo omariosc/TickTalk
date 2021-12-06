@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.css">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="favicon.ico">
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sign-in/">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" href="/static/css/signin.css">
+    <title>Login</title>
+  </head>
+  <body class="text-center">
+    <form class="form-signin" method="POST" action="/login">
+      <img class="mb-4" src="/static/favicon.ico" alt="" width="150" height="150">
+      <h1 class="h3 mb-3 font-weight-normal">TickTalk</h1>
+      <input type="username" name="username" class="form-control" placeholder="Username" required autofocus>
+      <input type="password" name="password" class="form-control" placeholder="Password" required>
+      <div class="checkbox mb-3">
+        <label><input type="checkbox" value="remember-me"> Remember me</label>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+      <br>
+      <label class="h5 mb-3 font-weight-normal">Not Registered?</label>
+      <a href="/register"><button class="btn btn-lg btn-primary btn-block" type="button">Register</button></a>
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/cookieconsent@3/build/cookieconsent.min.js" data-cfasync="false"></script>
+    <script src="static/js/cookie.js"></script>
+  </body>
+</html>

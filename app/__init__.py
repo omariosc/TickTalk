@@ -7,6 +7,7 @@ from app.login import login
 from app.logout import logout
 from app.register import register
 from app.home import home
+from app.settings import settings
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -22,6 +23,7 @@ app.register_blueprint(login)
 app.register_blueprint(logout)
 app.register_blueprint(register)
 app.register_blueprint(home)
+app.register_blueprint(settings)
 
 @login_manager.user_loader
 def load_user(user_id):

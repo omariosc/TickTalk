@@ -55,8 +55,8 @@ Flask web application which implements simple chat rooms. As part of Coursework 
 - The web site is to a professional standard.
 - The web site is responsive and feels natural to use on both tablet and desktop computers.
 - The user experience of the website is consistent.
-- Key functionality implemented in the website is easy and intuitive to use.
-- Consideration has be applied to enable accessibility to the website.
+- Key functionality implemented on the website is easy and intuitive to use.
+- Consideration has been applied to enable accessibility to the website.
 - Styling of the web site is appropriate for its purpose.
 
 ## Unit Testing
@@ -68,7 +68,7 @@ Flask web application which implements simple chat rooms. As part of Coursework 
 
 - Logging includes different levels of severity.
 - Logging is implemented with a useful message being saved.
-- Logging is implemented and stored either in a separate database model.
+- Logging is implemented and stored in a separate database model.
 
 ## Deployment
 

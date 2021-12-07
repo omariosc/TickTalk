@@ -11,7 +11,7 @@ window.cookieconsent.initialise({
   },
   "position": "bottom-left",
   "content": {
-    "message": "This website uses cookies to ensure you get the best experience on our website.",
+    "message": "We use cookies on our website to ensure you get the best experience during your stay.",
     "dismiss": "Got it!",
     "link": "Learn more"
   }

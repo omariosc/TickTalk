@@ -9,4 +9,4 @@ login_manager.init_app(home)
 @home.route('/home', methods=['GET'])
 @login_required
 def show():
-  return render_template('home.html', signin=0)
+  return render_template('home.html')

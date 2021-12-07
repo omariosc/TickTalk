@@ -1,7 +1,7 @@
 window.cookieconsent.initialise({
   "palette": {
     "popup": {
-      "background": "#0069d9",
+      "background": "#343A40",
       "text": "#ffffff"
     },
     "button": {
@@ -9,7 +9,7 @@ window.cookieconsent.initialise({
       "text": "#000000"
     }
   },
-  "position": "bottom-right",
+  "position": "bottom-left",
   "content": {
     "message": "This website uses cookies to ensure you get the best experience on our website.",
     "dismiss": "Got it!",

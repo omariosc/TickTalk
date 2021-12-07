@@ -2,6 +2,7 @@ import sqlalchemy
 from flask import Blueprint, url_for, render_template, redirect, request
 from flask.helpers import make_response
 from flask_login import LoginManager
+from flask_login import login_user
 from werkzeug.security import generate_password_hash
 from app.models import db, Users
 
@@ -26,12 +27,11 @@ def show():
           db.session.commit()
         except sqlalchemy.exc.IntegrityError:
           return redirect(url_for(regtxt) + '?error=user-or-email-exists')
-        return redirect(url_for('login.show') + '?success=account-created')
+        login_user(new_user)
+        return redirect(url_for('home.show') + '?success=account-created')
       else:
         return redirect(url_for(regtxt) + '?error=password-dont-match')
     else:
       return redirect(url_for(regtxt) + '?error=missing-fields')
   else:
-    response = make_response(render_template('register.html', title="Register"))
-    # response.set_cookie('username',)
-    return response
+    return render_template('register.html', title="Register")

@@ -11,13 +11,11 @@ from app.settings import settings
 
 app = Flask(__name__)
 app.config.from_object('config')
-
 login_manager = LoginManager()
 login_manager.init_app(app)
 db.init_app(app)
 migrate = Migrate(app, db)
 app.app_context().push()
-
 app.register_blueprint(index)
 app.register_blueprint(login)
 app.register_blueprint(logout)

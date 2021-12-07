@@ -8,6 +8,8 @@ register = Blueprint('register', __name__, template_folder='/templates')
 login_manager = LoginManager()
 login_manager.init_app(register)
 
+regtxt = "register.show"
+
 @register.route('/register', methods=['GET', 'POST'])
 def show():
   if request.method == 'POST':
@@ -23,9 +25,11 @@ def show():
           db.session.add(new_user)
           db.session.commit()
         except sqlalchemy.exc.IntegrityError:
-          return redirect(url_for('register.show') + '?error=user-or-email-exists')
+          return redirect(url_for(regtxt) + '?error=user-or-email-exists')
         return redirect(url_for('login.show') + '?success=account-created')
+      else:
+        return redirect(url_for(regtxt) + '?error=password-dont-match')
     else:
-      return redirect(url_for('register.show') + '?error=missing-fields')
+      return redirect(url_for(regtxt) + '?error=missing-fields')
   else:
-    return render_template('register.html', title="Register", signin=1)
+    return render_template('register.html', title="Register")

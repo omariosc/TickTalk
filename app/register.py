@@ -1,5 +1,6 @@
 import sqlalchemy
 from flask import Blueprint, url_for, render_template, redirect, request
+from flask.helpers import make_response
 from flask_login import LoginManager
 from werkzeug.security import generate_password_hash
 from app.models import db, Users
@@ -7,7 +8,6 @@ from app.models import db, Users
 register = Blueprint('register', __name__, template_folder='/templates')
 login_manager = LoginManager()
 login_manager.init_app(register)
-
 regtxt = "register.show"
 
 @register.route('/register', methods=['GET', 'POST'])
@@ -32,4 +32,6 @@ def show():
     else:
       return redirect(url_for(regtxt) + '?error=missing-fields')
   else:
-    return render_template('register.html', title="Register")
+    response = make_response(render_template('register.html', title="Register"))
+    # response.set_cookie('username',)
+    return response

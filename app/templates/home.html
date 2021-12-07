@@ -2,30 +2,27 @@
 {% block body %}
 <body>
   <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+      <span class="navbar-toggler-icon"></span>
+    </button>
     <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item"><a class="nav-link" href="/room/1">Room 1</a></li>
-        <li class="nav-item"><a class="nav-link" href="/room/2">Room 2</a></li>
-        <li class="nav-item"><a class="nav-link" href="/room/3">Room 3</a></li>
-        <li class="nav-item"><a class="nav-link" href="/room/4">Room 4</a></li>
-        <li class="nav-item"><a class="nav-link" href="/room/5">Room 5</a></li>
+        <li class="nav-item mb-0 h5"><a class="nav-link" href="/room/1">Room 1</a></li>
+        <li class="nav-item mb-0 h5"><a class="nav-link" href="/room/2">Room 2</a></li>
+        <li class="nav-item mb-0 h5"><a class="nav-link" href="/room/3">Room 3</a></li>
+        <li class="nav-item mb-0 h5"><a class="nav-link" href="/room/4">Room 4</a></li>
       </ul>
     </div>
     <div class="mx-auto order-0">
       <a class="navbar-brand mx-auto" href="/home"><img src="/static/favicon.ico" alt="TickTalk" width="34" height="34" href="/home"></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-        <span class="navbar-toggler-icon"></span>
-      </button>
     </div>
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item"><a class="nav-link" href="/settings">Settings</a></li>
-        <li class="nav-item"><a class="nav-link" href="/logout">Log Out</a></li>
+        <li class="nav-item mb-0 h5"><a class="nav-link" href="/settings">Settings</a></li>
+        <li class="nav-item mb-0 h5"><a class="nav-link" href="/logout">Log Out</a></li>
       </ul>
     </div>
   </nav>
-<div class="container-fluid">
-  <h2>Welcome @{{ current_user.username }}!</h2>
-</div>
+  
+<h3 class="text-right" style="padding:16px;">Logged in as: @{{ current_user.username }}</h3>
 {% endblock %}
-{% block content %}{% endblock %}

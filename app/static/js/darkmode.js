@@ -1,9 +1,9 @@
 function addDarkmodeWidget() {
   const options = {
-    bottom: '32px',
-    right: '32px',
+    bottom: '16px',
+    right: '16px',
     left: 'unset',
-    time: '0.3s',
+    time: '0.7s',
     mixColor: '#fff',
     backgroundColor: '#fff',
     buttonColorDark: '#100f2c',

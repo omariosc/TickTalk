@@ -9,8 +9,8 @@ body {
   align-items: center;
   -webkit-box-pack: center;
   justify-content: center;
-  padding-top: 150px;
-  padding-bottom: 150px;
+  padding-top: 125px;
+  padding-bottom: 125px;
 }
 .form-signin {
   width: 100%;

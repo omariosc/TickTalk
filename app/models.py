@@ -9,7 +9,7 @@ class UserRooms(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   user = db.Column(db.ForeignKey('Users.id'))
   room = db.Column(db.ForeignKey('Rooms.id'))
-  message = db.relationship("UserRoom", secondary='Messages')
+  message = db.relationship('Messages')
 
 class Users(UserMixin, db.Model):
   __tablename__ = 'Users'
@@ -17,16 +17,16 @@ class Users(UserMixin, db.Model):
   username = db.Column(db.String(20), unique=True)
   email = db.Column(db.String(50), unique=True)
   password = db.Column(db.String)
-  room = db.relationship("User", secondary='UserRooms')
+  room = db.relationship("Rooms", secondary='UserRooms')
 
 class Rooms(db.Model):
   __tablename__ = 'Rooms'
   id = db.Column(db.Integer, primary_key=True)
-  user = db.relationship("Room", secondary='UserRooms')
+  user = db.relationship("Users", secondary='UserRooms')
   
 class Messages(db.Model):
   __tablename__ = 'Messages'
   id = db.Column(db.Integer, primary_key=True)
-  userroom = db.Column(db.ForeignKey('UserRooms.id'))
+  userroom = db.Column(db.Integer, db.ForeignKey('UserRooms.id'))
   message = db.Column(db.String)
   time = db.Column(db.Date)

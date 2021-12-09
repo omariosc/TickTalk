@@ -8,6 +8,7 @@ from app.logout import logout
 from app.register import register
 from app.home import home
 from app.settings import settings
+from app.room import room
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -22,10 +23,11 @@ app.register_blueprint(logout)
 app.register_blueprint(register)
 app.register_blueprint(home)
 app.register_blueprint(settings)
+app.register_blueprint(room)
 
 @login_manager.user_loader
-def load_user(user_id):
-  return Users.query.get(int(user_id))
+def load_user(id):
+  return Users.query.get(int(id))
 
 @app.errorhandler(404)
 def page_not_found(error):

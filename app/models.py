@@ -38,4 +38,4 @@ class Logs(db.Model):
   userroom_id=db.Column(db.Integer,db.ForeignKey('UserRooms.id'))
   message=db.Column(db.String)
   datetime=db.Column(db.DateTime(timezone=True))
-  severity=db.Column(db.Integer)
+  severity=db.Column(db.String)

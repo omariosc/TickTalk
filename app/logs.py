@@ -5,7 +5,7 @@ def log_logout(user):
   db.session.add(Logs(
     user_id=user.id,
     datetime=datetime.now(),
-    severity=0,
+    severity="INFO",
     message="user \""+user.username+"\" logged out"))
   db.session.commit()
   
@@ -13,7 +13,7 @@ def log_user_login(user):
   db.session.add(Logs(
     user_id=user.id,
     datetime=datetime.now(),
-    severity=0,
+    severity="INFO",
     message="user \""+user.username+"\" logged in"))
   db.session.commit()
 
@@ -21,7 +21,7 @@ def log_create_user(user):
   db.session.add(Logs(
     user_id=user.id,
     datetime=datetime.now(),
-    severity=0,
+    severity="INFO",
     message="created user \""+user.username+"\""))
   db.session.commit()
   log_user_login(user)
@@ -30,7 +30,7 @@ def log_change_password(user):
   db.session.add(Logs(
     user_id=user.id,
     datetime=datetime.now(),
-    severity=0,
+    severity="INFO",
     message="user \""+user.username+"\" changed password"))
   db.session.commit()
 
@@ -39,7 +39,7 @@ def log_create_room(user,room):
     user_id=user.id,
     room_id=room.id,
     datetime=datetime.now(),
-    severity=0,
+    severity="INFO",
     message="user \""+user.username+"\" created room "+str(room.id)))
   db.session.commit()
 
@@ -51,7 +51,7 @@ def log_join_room(userroom):
     room_id=userroom.room,
     userroom_id=userroom.id,
     datetime=datetime.now(),
-    severity=0,
+    severity="INFO",
     message="user \""+username+"\" joined room "+room))
   db.session.commit()
 
@@ -63,7 +63,7 @@ def log_leave_room(userroom):
     room_id=userroom.room,
     userroom_id=userroom.id,
     datetime=datetime.now(),
-    severity=0,
+    severity="INFO",
     message="user \""+username+"\" left room "+room))
   db.session.commit()
 
@@ -75,12 +75,12 @@ def log_send_message(userroom,message):
     room_id=userroom.room,
     userroom_id=userroom.id,
     datetime=datetime.now(),
-    severity=0,
+    severity="INFO",
     message="user \""+username+"\" sent message \""+message+"\" room "+room))
   db.session.commit()
 
 def log_error(user=0,room=0,userroom=0,error="",ip=0):
-  error_log=Logs(datetime=datetime.now(),severity=1,)
+  error_log=Logs(datetime=datetime.now(),severity="WARNING",)
   message="ERROR: "
   if ip != 0:
     message += "ip: \""+str(ip)+"\"; "

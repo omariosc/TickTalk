@@ -1,6 +1,13 @@
 from app.models import db, Logs, Users, Rooms
 from datetime import datetime
 
+def log_logout(user):
+  db.session.add(Logs(
+    user_id=user.id, 
+    datetime=datetime.now(),
+    message="user \""+user.username+"\" logged out"))
+  db.session.commit()
+  
 def log_user_login(user):
   db.session.add(Logs(
     user_id=user.id, 
@@ -12,7 +19,7 @@ def log_create_user(user):
   db.session.add(Logs(
     user_id=user.id, 
     datetime=datetime.now(), 
-    message="created \""+user.username+"\""))
+    message="created user \""+user.username+"\""))
   db.session.commit()
   log_user_login(user)
 

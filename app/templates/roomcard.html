@@ -12,10 +12,10 @@
           <br>
           <div>
             {% if joined[i-1] == 1 %}
-            <a href="/room/{{ i }}" class="btn btn-dark btn-darkmode card-link">View</a>
-            <a href="/room/leave/{{ i }}" class="btn btn-dark btn-darkmode card-link">Leave</a>
+            <a href="/room/{{ room_ids[i-1] }}" class="btn btn-dark btn-darkmode card-link">View</a>
+            <a href="/room/leave/{{ room_ids[i-1] }}" class="btn btn-dark btn-darkmode card-link">Leave</a>
             {% else %}
-            <a href="/room/join/{{ i }}" class="btn btn-dark btn-darkmode card-link">Join</a>
+            <a href="/room/join/{{ room_ids[i-1] }}" class="btn btn-dark btn-darkmode card-link">Join</a>
             {% endif %}
           </div>
         </div>

@@ -2,7 +2,8 @@ from flask import Blueprint,url_for,redirect,request
 from flask.templating import render_template
 from flask_login import login_required,current_user
 from app.models import db,Users,Rooms,UserRooms,Messages
-from app.logs import log_create_room,log_join_room,log_leave_room,log_error
+from app.logs import log_create_room,log_join_room,log_leave_room,log_error,log_send_message
+from datetime import datetime
 
 room=Blueprint('room',__name__,template_folder='/templates')
 
@@ -18,11 +19,28 @@ def show(room_id):
   else:
     userrooms=UserRooms.query.filter_by(room=room_id).all()
     messages=[]
+    usernames=[]
     for i in range(len(userrooms)):
       userroom_messages=Messages.query.filter_by(userroom_id=userrooms[i].id).all()
       for message in userroom_messages:
         messages.append(message)
-    return render_template('chatroom.html',messages=messages,userroom_id=UserRooms.query.filter_by(user=current_user.id,room=room_id).one().id)
+        userid=UserRooms.query.filter_by(id=message.userroom_id).one().user
+        username=Users.query.filter_by(id=userid).one().username
+        usernames.append(username)
+    return render_template('chatroom.html',room_id=room_id,messages=messages,no_messages=len(messages),usernames=usernames,userroom_id=UserRooms.query.filter_by(user=current_user.id,room=room_id).one().id)
+
+@room.route('/room/chat/<room_id>',methods=['GET','POST'])
+def chat(room_id):
+  if request.method=='POST':
+    message=request.form['message']
+    userroom=UserRooms.query.filter_by(user=current_user.id,room=room_id).one()
+    message_db=Messages(userroom_id=userroom.id,message=message,datetime=datetime.now())
+    log_send_message(userroom, message)
+    db.session.add(message_db)
+    db.session.commit()
+    return redirect('/room/'+str(room_id))
+  else:
+    return redirect('/room/'+str(room_id))
 
 @room.route('/room/join/<room_id>',methods=['GET'])
 @login_required

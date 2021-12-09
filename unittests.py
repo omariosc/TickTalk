@@ -1,8 +1,8 @@
-import os
-import unittest
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from app import app, db, models
+import os
+import unittest
 
 class TestCase(unittest.TestCase):
   def setUp(self):

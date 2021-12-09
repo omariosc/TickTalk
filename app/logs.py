@@ -80,8 +80,8 @@ def log_send_message(userroom,message):
   db.session.commit()
 
 def log_error(user=0,room=0,userroom=0,error="",ip=0):
-  error_log=Logs(datetime=datetime.now(),severity="WARNING",)
-  message="ERROR: "
+  error_log=Logs(datetime=datetime.now(),severity="WARNING")
+  message=""
   if ip != 0:
     message += "ip: \""+str(ip)+"\"; "
   if len(error)>0:

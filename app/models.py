@@ -31,10 +31,11 @@ class Messages(db.Model):
   datetime = db.Column(db.DateTime(timezone=True))
 
 class Logs(db.Model):
-  __tablename__ = 'UserLogs'
+  __tablename__ = 'Logs'
   id = db.Column(db.Integer, primary_key=True)
   user_id = db.Column(db.Integer, db.ForeignKey('Users.id'))
   room_id = db.Column(db.Integer, db.ForeignKey('Rooms.id'))
   userroom_id = db.Column(db.Integer, db.ForeignKey('UserRooms.id'))
   message = db.Column(db.String)
   datetime = db.Column(db.DateTime(timezone=True))
+  severity = db.Column(db.Integer)

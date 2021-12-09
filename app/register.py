@@ -5,7 +5,7 @@ from flask_login import LoginManager
 from flask_login import login_user
 from werkzeug.security import generate_password_hash
 from app.models import db, Users
-from app.logs import log_create_user
+from app.logs import log_create_user, log_error
 
 register = Blueprint('register', __name__, template_folder='/templates')
 login_manager = LoginManager()
@@ -27,13 +27,16 @@ def show():
           db.session.add(new_user)
           db.session.commit()
         except sqlalchemy.exc.IntegrityError:
+          log_error(ip=request.remote_addr,error="register-user-or-email-exists")
           return redirect(url_for(regtxt) + '?error=user-or-email-exists')
         login_user(new_user)
         log_create_user(new_user)
         return redirect(url_for('home.show') + '?success=account-created')
       else:
-        return redirect(url_for(regtxt) + '?error=password-dont-match')
+        log_error(ip=request.remote_addr,error="register-passwords-dont-match")
+        return redirect(url_for(regtxt) + '?error=passwords-dont-match')
     else:
+      log_error(ip=request.remote_addr,error="register-missing-fields")
       return redirect(url_for(regtxt) + '?error=missing-fields')
   else:
     return render_template('register.html', title="Register")

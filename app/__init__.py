@@ -1,6 +1,6 @@
-from flask import Flask, render_template
-from flask_login import LoginManager
-from flask_migrate import Migrate 
+from flask import Flask, render_template, request
+from flask_login import LoginManager, current_user
+from flask_migrate import Migrate, current 
 from app.models import db, Users
 from app.index import index
 from app.login import login
@@ -10,6 +10,7 @@ from app.home import home
 from app.settings import settings
 from app.room import room
 from app.myrooms import myrooms
+from app.logs import log_error
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -32,9 +33,17 @@ def load_user(id):
   return Users.query.get(int(id))
 
 @app.errorhandler(404)
-def page_not_found(error):
+def error(error):
+  if current_user.is_authenticated:
+    log_error(user=current_user, error="404")
+  else:
+    log_error(error="404-not-found", ip=request.remote_addr)
   return render_template('error.html',title='404', message="The page you are looking for was not found."), 404
 
 @app.errorhandler(401)
-def page_not_found(error):
+def error(error):
+  if current_user.is_authenticated:
+    log_error(user=current_user, error="401")
+  else:
+    log_error(error="401-unauthorized", ip=request.remote_addr)
   return render_template('error.html',title='401', message="You are not authorized to access the URL requested"), 401

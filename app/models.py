@@ -17,16 +17,16 @@ class Users(UserMixin, db.Model):
   username = db.Column(db.String(20), unique=True)
   email = db.Column(db.String(50), unique=True)
   password = db.Column(db.String)
-  room = db.relationship("Rooms", secondary='UserRooms')
+  rooms = db.relationship("Rooms", secondary='UserRooms', back_populates="users")
 
 class Rooms(db.Model):
   __tablename__ = 'Rooms'
   id = db.Column(db.Integer, primary_key=True)
-  user = db.relationship("Users", secondary='UserRooms')
+  users = db.relationship("Users", secondary='UserRooms', back_populates="rooms")
   
 class Messages(db.Model):
   __tablename__ = 'Messages'
   id = db.Column(db.Integer, primary_key=True)
-  userroom = db.Column(db.Integer, db.ForeignKey('UserRooms.id'))
+  userroom_id = db.Column(db.Integer, db.ForeignKey('UserRooms.id'))
   message = db.Column(db.String)
   time = db.Column(db.Date)

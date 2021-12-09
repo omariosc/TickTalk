@@ -9,6 +9,7 @@ from app.register import register
 from app.home import home
 from app.settings import settings
 from app.room import room
+from app.myrooms import myrooms
 
 app = Flask(__name__)
 app.config.from_object('config')
@@ -24,6 +25,7 @@ app.register_blueprint(register)
 app.register_blueprint(home)
 app.register_blueprint(settings)
 app.register_blueprint(room)
+app.register_blueprint(myrooms)
 
 @login_manager.user_loader
 def load_user(id):
@@ -31,4 +33,4 @@ def load_user(id):
 
 @app.errorhandler(404)
 def page_not_found(error):
-   return render_template('404.html',title='404'), 404
+  return render_template('404.html',title='404'), 404

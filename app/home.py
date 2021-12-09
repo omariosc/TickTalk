@@ -13,7 +13,9 @@ def show():
   members = []
   messages = []
   joined = []
+  room_ids = []
   for i in range(0,len(rooms)):
+    room_ids.append(Rooms.query.filter_by(id=rooms[i].id).one().id)
     userrooms = UserRooms.query.filter_by(room=rooms[i].id).all()
     members.append(len(userrooms))
     count = 0
@@ -24,4 +26,4 @@ def show():
       joined.append(1)
     else:
       joined.append(0)
-  return render_template('roomcard.html', rooms=rooms, no_rooms=len(rooms), members=members, messages=messages, joined=joined)
+  return render_template('roomcard.html', rooms=rooms, no_rooms=len(rooms), room_ids=room_ids, members=members, messages=messages, joined=joined)

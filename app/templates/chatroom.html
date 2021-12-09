@@ -1,4 +1,11 @@
 {% extends "home.html" %}
 {% block content %}
-
+<link rel="stylesheet" href="/static/css/rooms.css">
+<div class="chat-container">
+  <form class="form-room" method="POST">
+    <input type="text" style="border-top-left-radius:1;border-top-right-radius:1;border-bottom-right-radius:1;border-bottom-left-radius:1;" name="message" class="form-control" placeholder="Enter text here..." required autofocus>
+    <br>
+    <button class="btn btn-lg btn-dark btn-block" type="submit">Send</button>
+  </form>
+</div>
 {% endblock %}

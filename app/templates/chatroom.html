@@ -5,7 +5,7 @@
 {% block content %}
 <div class="chat-container">
   {% for i in range(no_messages) %}
-  <div class="form-control">{{ usernames[i] }}: {{ messages[i].message }}</div>
+  <div class="form-control">[{{ messages[i].datetime }}] {{ usernames[i] }}: {{ messages[i].message }}</div>
   {% endfor %}
   <br>
   <form class="form-room" method="POST" action="/room/chat/{{ room_id }}">

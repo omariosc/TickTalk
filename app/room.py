@@ -24,9 +24,12 @@ def show(room_id):
       userroom_messages=Messages.query.filter_by(userroom_id=userrooms[i].id).all()
       for message in userroom_messages:
         messages.append(message)
-        userid=UserRooms.query.filter_by(id=message.userroom_id).one().user
-        username=Users.query.filter_by(id=userid).one().username
-        usernames.append(username)
+    messages.sort(key=lambda r: r.datetime)
+    for message in messages:
+      message.datetime = message.datetime.replace(microsecond=0) 
+      userid=UserRooms.query.filter_by(id=message.userroom_id).one().user
+      username=Users.query.filter_by(id=userid).one().username
+      usernames.append(username)
     return render_template('chatroom.html',room_id=room_id,messages=messages,no_messages=len(messages),usernames=usernames,userroom_id=UserRooms.query.filter_by(user=current_user.id,room=room_id).one().id)
 
 @room.route('/room/chat/<room_id>',methods=['GET','POST'])

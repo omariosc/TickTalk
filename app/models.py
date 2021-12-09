@@ -28,4 +28,13 @@ class Messages(db.Model):
   id = db.Column(db.Integer, primary_key=True)
   userroom_id = db.Column(db.Integer, db.ForeignKey('UserRooms.id'))
   message = db.Column(db.String)
-  time = db.Column(db.Date)
+  datetime = db.Column(db.DateTime(timezone=True))
+
+class Logs(db.Model):
+  __tablename__ = 'UserLogs'
+  id = db.Column(db.Integer, primary_key=True)
+  user_id = db.Column(db.Integer, db.ForeignKey('Users.id'))
+  room_id = db.Column(db.Integer, db.ForeignKey('Rooms.id'))
+  userroom_id = db.Column(db.Integer, db.ForeignKey('UserRooms.id'))
+  message = db.Column(db.String)
+  datetime = db.Column(db.DateTime(timezone=True))

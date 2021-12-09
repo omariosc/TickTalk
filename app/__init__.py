@@ -33,4 +33,8 @@ def load_user(id):
 
 @app.errorhandler(404)
 def page_not_found(error):
-  return render_template('404.html',title='404'), 404
+  return render_template('error.html',title='404', message="The page you are looking for was not found."), 404
+
+@app.errorhandler(401)
+def page_not_found(error):
+  return render_template('error.html',title='401', message="You are not authorized to access the URL requested"), 401

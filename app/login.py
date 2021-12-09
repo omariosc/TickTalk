@@ -2,6 +2,7 @@ from flask import Blueprint, url_for, render_template, redirect, request
 from flask_login import LoginManager, login_user, current_user
 from werkzeug.security import check_password_hash
 from app.models import db, Users
+from app.logs import log_user_login
 
 login = Blueprint('login', __name__, template_folder='/templates')
 login_manager = LoginManager()
@@ -16,7 +17,8 @@ def show():
     if user:
       if check_password_hash(user.password, password):
         login_user(user)
-        return redirect(url_for('home.show'))
+        log_user_login(user)
+        return redirect(url_for('home.show')+ '?success=logged-in')
       else:
         return redirect(url_for('login.show') + '?error=incorrect-password')
     else:

@@ -2,6 +2,7 @@ from flask import Blueprint, url_for, render_template, redirect, request
 from flask_login import LoginManager, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.models import db, Users
+from app.logs import log_change_password
 
 settings = Blueprint('settings', __name__, template_folder='/templates')
 settings_manager = LoginManager()
@@ -23,6 +24,7 @@ def show():
             hashed_password = generate_password_hash(new_password, method='sha256')
             Users.query.filter_by(username=current_user.username).update({"password": hashed_password})
             db.session.commit()
+            log_change_password(current_user)
             return redirect(url_for(showtxt) + '?success=changed-password')
           else:
             return redirect(url_for(showtxt) + '?error=password-dont-match')

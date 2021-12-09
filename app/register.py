@@ -1,29 +1,29 @@
 import sqlalchemy
-from flask import Blueprint, url_for, render_template, redirect, request
+from flask import Blueprint,url_for,render_template,redirect,request
 from flask.helpers import make_response
 from flask_login import LoginManager
 from flask_login import login_user
 from werkzeug.security import generate_password_hash
-from app.models import db, Users
-from app.logs import log_create_user, log_error
+from app.models import db,Users
+from app.logs import log_create_user,log_error
 
-register = Blueprint('register', __name__, template_folder='/templates')
-login_manager = LoginManager()
+register=Blueprint('register',__name__,template_folder='/templates')
+login_manager=LoginManager()
 login_manager.init_app(register)
-regtxt = "register.show"
+regtxt="register.show"
 
-@register.route('/register', methods=['GET', 'POST'])
+@register.route('/register',methods=['GET','POST'])
 def show():
-  if request.method == 'POST':
-    username = request.form['username']
-    email = request.form['email']
-    password = request.form['password']
-    confirm_password = request.form['confirm-password']
+  if request.method=='POST':
+    username=request.form['username']
+    email=request.form['email']
+    password=request.form['password']
+    confirm_password=request.form['confirm-password']
     if username and email and password and confirm_password:
-      if password == confirm_password:
-        hashed_password = generate_password_hash(password, method='sha256')
+      if password==confirm_password:
+        hashed_password=generate_password_hash(password,method='sha256')
         try:
-          new_user = Users(username=username, email=email,password=hashed_password)
+          new_user=Users(username=username,email=email,password=hashed_password)
           db.session.add(new_user)
           db.session.commit()
         except sqlalchemy.exc.IntegrityError:
@@ -39,4 +39,4 @@ def show():
       log_error(ip=request.remote_addr,error="register-missing-fields")
       return redirect(url_for(regtxt) + '?error=missing-fields')
   else:
-    return render_template('register.html', title="Register")
+    return render_template('register.html',title="Register")

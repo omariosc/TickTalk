@@ -1,6 +1,7 @@
 from flask import Flask,render_template,request
 from flask_login import LoginManager,current_user
 from flask_migrate import Migrate,current 
+from flask_socketio import SocketIO
 from app.models import db,Users
 from app.index import index
 from app.login import login
@@ -27,6 +28,7 @@ app.register_blueprint(home)
 app.register_blueprint(settings)
 app.register_blueprint(room)
 app.register_blueprint(myrooms)
+socketio = SocketIO(app)
 
 @login_manager.user_loader
 def load_user(id):
@@ -47,3 +49,11 @@ def error(error):
   else:
     log_error(error="401-unauthorized",ip=request.remote_addr)
   return render_template('error.html',title='401',message="You are not authorized to access the URL requested"),401
+
+def messageReceived(methods=['GET', 'POST']):
+  print('message was received!!!')
+
+@socketio.on('my event')
+def handle_my_custom_event(json, methods=['GET', 'POST']):
+  print('received my event: ' + str(json))
+  socketio.emit('my response', json, callback=messageReceived)

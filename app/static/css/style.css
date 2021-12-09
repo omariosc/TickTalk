@@ -15,3 +15,7 @@ html, body {
 .darkmode--activated .border-dark {
   border-color: #DCD8D4!important;
 }
+.darkmode--activated .inputfield {
+  background-color: #181A1B!important;
+  color: #fff!important
+}

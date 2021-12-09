@@ -1,0 +1,9 @@
+body {
+  background: #fff
+}
+.page-wrap {
+  min-height: 100vh
+}
+.darkmode--activated {
+  color: #fff!important
+}

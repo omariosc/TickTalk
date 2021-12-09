@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 from flask_login import LoginManager
 from flask_migrate import Migrate 
 from app.models import db, Users
@@ -26,3 +26,7 @@ app.register_blueprint(settings)
 @login_manager.user_loader
 def load_user(user_id):
   return Users.query.get(int(user_id))
+
+@app.errorhandler(404)
+def page_not_found(error):
+   return render_template('404.html',title='404'), 404

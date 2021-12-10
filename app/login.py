@@ -41,7 +41,7 @@ def show():
         return redirect(url_for('login.show') + '?error=incorrect-password')
     # If user does not exist
     else:
-      flash("User "+str(username)+"does not exist", "error")
+      flash("User "+str(username)+" does not exist", "error")
       # Logs error
       log_error(ip=request.remote_addr,error="login-user-not-found")
       return redirect(url_for('login.show') + '?error=user-not-found')

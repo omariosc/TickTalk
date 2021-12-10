@@ -10,7 +10,7 @@ Flask web application which implements simple chat rooms. As part of Coursework 
 
 - Web forms allowing the user to enter data (including client side and server-side validation).
 - A database to store information.
-- Three models (one for users, one for chat rooms and one for messages)
+- Five models (one for users, one for chat rooms, one association table for users and rooms, one for messages and finally one for logs)
 - Many-to-many relationship.
 - The use of sessions and cookies.
 - Authentication.
@@ -22,6 +22,7 @@ Flask web application which implements simple chat rooms. As part of Coursework 
 
 - Bootstrap
 - JavaScript
+- Advanced feature of HTML (local storage)
 
 ## Web Forms
 

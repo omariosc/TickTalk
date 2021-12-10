@@ -1,9 +1,8 @@
 {% extends "home.html" %}
 {% block content %}
-<link rel="stylesheet" href="/static/css/settings.css">
 <h3 class="text-center padtop">Change Password</h3>
-<div class="settings-container">
-  <form class="form-settings" method="POST" action="/settings">
+<div class="custom-form-container">
+  <form class="form-custom" method="POST" action="/settings">
     <input type="password" name="old_password" class="form-control inputfield input-top" placeholder="Old Password" required autofocus>
     <input type="password" name="new_password" class="form-control inputfield input-mid" placeholder="New Password" required>
     <input type="password" name="confirm_password" class="form-control inputfield input-bottom" placeholder="Confirm New Password" required>

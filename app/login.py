@@ -1,5 +1,5 @@
 # Imports required modules
-from flask import Blueprint,url_for,render_template,redirect,request
+from flask import Blueprint,url_for,render_template,redirect,request,flash
 from flask_login import LoginManager,login_user,current_user
 from werkzeug.security import check_password_hash
 from app.models import db,Users
@@ -31,14 +31,17 @@ def show():
         login_user(user)
         # Logs user login
         log_user_login(user)
+        flash("Logged in")
         return redirect(url_for('home.show')+ '?success=logged-in')
       # If incorrect password
       else:
+        flash("Incorrect password", "error")
         # Logs error
         log_error(user=user,ip=request.remote_addr,error="login-incorrect-password")
         return redirect(url_for('login.show') + '?error=incorrect-password')
     # If user does not exist
     else:
+      flash("User "+str(username)+"does not exist", "error")
       # Logs error
       log_error(ip=request.remote_addr,error="login-user-not-found")
       return redirect(url_for('login.show') + '?error=user-not-found')

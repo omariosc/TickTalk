@@ -1,12 +1,6 @@
-{% extends "base.html" %}
-{% block head %}
-<link rel="stylesheet" href="/static/css/signin.css">
-{% endblock %}
-{% block body %}
-<body class="text-center">
-{% endblock %}
-{% block content %}
-<form class="form-signin" method="POST" action="/register">
+{% extends "signin.html" %}
+{% block form %}
+<form class="form-custom" method="POST" action="/register">
   <img class="mb-4" src="/static/favicon.ico" alt="TickTalk" width="150" height="150">
   <h3>Register</h3>
   <br>

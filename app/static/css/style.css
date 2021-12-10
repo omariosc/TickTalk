@@ -54,7 +54,7 @@ html, body {
   text-decoration: none;
 }
 .padtop {
-  padding-top: 150px;
+  padding-top: 125px;
 }
 .input-top {
   border-top-left-radius: 3px;
@@ -86,4 +86,11 @@ html, body {
 }
 .margin-bottom-null {
   margin-bottom: -1px;
+}
+.autowidth {
+  align-self: center;
+  align-items: center;
+  padding-left: 43%;
+  padding-right: 43%;
+  padding-top: 10px;
 }

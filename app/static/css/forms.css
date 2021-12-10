@@ -1,4 +1,4 @@
-body {
+.custom-form-container {
   display: -ms-flexbox;
   display: -webkit-box;
   display: flex;
@@ -9,22 +9,21 @@ body {
   align-items: center;
   -webkit-box-pack: center;
   justify-content: center;
-  padding-top: 125px;
   padding-bottom: 125px;
 }
-.form-signin {
+.form-custom {
   width: 100%;
   max-width: 330px;
   padding: 15px;
   margin: 0 auto;
 }
-.form-signin .form-control {
+.form-custom .form-control {
   position: relative;
   box-sizing: border-box;
   height: auto;
   padding: 10px;
   font-size: 16px;
 }
-.form-signin .form-control:focus {
+.form-custom .form-control:focus {
   z-index: 2;
 }

@@ -2,19 +2,16 @@
 {% block head %}
 <link rel="stylesheet" href="/static/css/notfound.css">
 {% endblock %}
-{% block body %}
-<body>
-{% endblock %}
 {% block content %}
 <div class="page-wrap d-flex flex-row align-items-center pad">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12 text-center text-lighten">
-                <span class="display-1 d-block">{{ title }}</span>
-                <div class="mb-4 lead">{{ message }}</div>
-                <a href="/" class="btn btn-link">Back to Home</a>
-            </div>
-        </div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-12 text-center text-lighten">
+        <span class="display-1 d-block">{{ title }}</span>
+        <div class="mb-4 lead">{{ message }}</div>
+        <a href="/" class="btn btn-link">Back to Home</a>
+      </div>
     </div>
+  </div>
 </div>
 {% endblock %}

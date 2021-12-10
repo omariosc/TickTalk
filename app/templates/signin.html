@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block head %}
+<link rel="stylesheet" href="/static/css/forms.css">
+{% endblock %}
+{% block content %}
+<div class="autowidth text-center">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+      {% if category == "error" %}
+      {% set tag="danger" %}
+      {% else %}
+      {% set tag="success" %}
+      {% endif %}
+      <div class="alert alert-{{ tag }}" role="alert"> {{ message }} </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+</div>
+<div class="custom-form-container text-center padtop">
+  {% block form %}
+  {% endblock %}
+</div>
+{% endblock %}

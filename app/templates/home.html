@@ -1,25 +1,38 @@
 {% extends "base.html" %}
-{% block body %}
-<body>
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item mb-0 h5"><a class="nav-link" href="/home">Home</a></li>
-        <li class="nav-item mb-0 h5"><a class="nav-link" href="/myrooms">My Rooms</a></li>
-      </ul>
-    </div>
-    <div class="mx-auto order-0">
-      <a class="navbar-brand mx-auto" href="/home"><img src="/static/favicon.ico" alt="TickTalk" width="34" height="34"></a>
-    </div>
-    <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-      <ul class="navbar-nav ml-auto">
-        <li class="nav-item mb-0 h5"><a class="nav-link" href="/settings">Settings</a></li>
-        <li class="nav-item mb-0 h5"><a class="nav-link" href="/logout">Log Out</a></li>
-      </ul>
-    </div>
-  </nav>
+{% block navbar %}
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item mb-0 h5"><a class="nav-link" href="/home">Home</a></li>
+      <li class="nav-item mb-0 h5"><a class="nav-link" href="/myrooms">My Rooms</a></li>
+    </ul>
+  </div>
+  <div class="mx-auto order-0">
+    <a class="navbar-brand mx-auto" href="/home"><img src="/static/favicon.ico" alt="TickTalk" width="34" height="34"></a>
+  </div>
+  <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item mb-0 h5"><a class="nav-link" href="/settings">Settings</a></li>
+      <li class="nav-item mb-0 h5"><a class="nav-link" href="/logout">Log Out</a></li>
+    </ul>
+  </div>
+</nav>
+<div class="autowidth text-center">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      {% for category, message in messages %}
+      {% if category == "error" %}
+      {% set tag="danger" %}
+      {% else %}
+      {% set tag="success" %}
+      {% endif %}
+      <div class="alert alert-{{ tag }}" role="alert"> {{ message }} </div>
+      {% endfor %}
+    {% endif %}
+  {% endwith %}
+</div>
 <h4 class="text-right loggedinuser">Logged in as: @{{ current_user.username }}</h4>
 {% endblock %}

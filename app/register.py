@@ -1,7 +1,6 @@
 import sqlalchemy
 from flask import Blueprint,url_for,render_template,redirect,request
-from flask.helpers import make_response
-from flask_login import LoginManager
+from flask_login import LoginManager,current_user
 from flask_login import login_user
 from werkzeug.security import generate_password_hash
 from app.models import db,Users
@@ -14,6 +13,8 @@ regtxt="register.show"
 
 @register.route('/register',methods=['GET','POST'])
 def show():
+  if current_user.is_authenticated:
+    return redirect('home')
   if request.method=='POST':
     username=request.form['username']
     email=request.form['email']

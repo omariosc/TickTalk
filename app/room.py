@@ -2,7 +2,7 @@ from flask import Blueprint,url_for,redirect,request
 from flask.templating import render_template
 from flask_login import login_required,current_user
 from app.models import db,Users,Rooms,UserRooms,Messages
-from app.logs import log_create_room,log_join_room,log_leave_room,log_error,log_send_message
+from app.logs import log_create_room,log_delete_messages,log_join_room,log_leave_room,log_error,log_send_message
 from datetime import datetime
 
 room=Blueprint('room',__name__,template_folder='/templates')
@@ -70,6 +70,10 @@ def leave(room_id):
     return redirect(url_for('home.show') + '?error=not-in-room')
   else:
     userroom=UserRooms.query.filter_by(user=current_user.id,room=room_id).one()
+    messages=Messages.query.filter_by(userroom_id=userroom.id).all()
+    for message in messages:
+      log_delete_messages(userroom, message)
+      db.session.delete(message)
     log_leave_room(userroom)
     db.session.delete(userroom)
     db.session.commit()

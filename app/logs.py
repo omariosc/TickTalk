@@ -55,6 +55,18 @@ def log_join_room(userroom):
     message="user \""+username+"\" joined room "+room))
   db.session.commit()
 
+def log_delete_messages(userroom, message):
+  username=str(Users.query.filter_by(id=userroom.user).one().username)
+  room=str(Rooms.query.filter_by(id=userroom.room).one().id)
+  db.session.add(Logs(
+    user_id=userroom.user,
+    room_id=userroom.room,
+    userroom_id=userroom.id,
+    datetime=datetime.now(),
+    severity="INFO",
+    message="user \""+username+"\" deleted message \""+message.message+"\" in room"+room))
+  db.session.commit()
+
 def log_leave_room(userroom):
   username=str(Users.query.filter_by(id=userroom.user).one().username)
   room=str(Rooms.query.filter_by(id=userroom.room).one().id)

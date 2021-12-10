@@ -6,6 +6,9 @@ Flask web application which implements simple chat rooms. As part of Coursework 
 
 `https://omariosc.pythonaywhere.com`
 
+Username: `admin`
+Password: `admin`
+
 ## List of Implemented Features
 
 - Web forms allowing the user to enter data (including client side and server-side validation).

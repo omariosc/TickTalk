@@ -1,9 +1,9 @@
 body {
-  background: #fff
+  background: #fff;
 }
 .page-wrap {
-  min-height: 100vh
+  min-height: 100vh;
 }
 .darkmode--activated {
-  color: #fff!important
+  color: #fff!important;
 }

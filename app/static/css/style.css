@@ -79,7 +79,8 @@ html, body {
 }
 .deckpad {
   padding-left: 5%;
-  padding-right:5%;
+  padding-right: 5%;
+  padding-bottom: 30px;
 }
 .margin-null {
   margin: 0;

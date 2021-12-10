@@ -140,5 +140,5 @@ def create():
   db.session.commit()
   # Logs the room creation by the user
   log_create_room(current_user,room)
-  flash("Created Room "+str(room.room_id))
+  flash("Created Room "+str(room.id))
   return redirect(url_for('home.show') + '?success=created-room')

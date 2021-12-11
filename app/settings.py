@@ -34,13 +34,13 @@ def show():
             flash("Password too short", "error")
             # Logs error
             log_error(ip=request.remote_addr,error="register-password-too-short")
-            return redirect('/register' + '?error=password-too-short')
+            return redirect(url_for(showtxt) + '?error=password-too-short')
           # Password should be maximum 20 characters
           if len(new_password) > 20:
             flash("Password too long", "error")
             # Logs error
             log_error(ip=request.remote_addr,error="register-password-too-long")
-            return redirect('/register' + '?error=password-too-long')
+            return redirect(url_for(showtxt) + '?error=password-too-long')
           #If new password is different from the old password]
           if check_password_hash(current_user.password,new_password) == False:
             # Hashes password and updates password in database

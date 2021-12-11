@@ -1,5 +1,5 @@
 # Import required modules
-from flask import Blueprint,url_for,render_template,redirect,request
+from flask import Blueprint,url_for,render_template,redirect,request,flash
 from flask_login import LoginManager,login_required,current_user
 from werkzeug.security import generate_password_hash,check_password_hash
 from app.models import db,Users
@@ -35,16 +35,20 @@ def show():
           db.session.commit()
           # Logs password change
           log_change_password(current_user)
+          flash("Changed password")
           return redirect(url_for(showtxt) + '?success=changed-password')
         else:
+          flash("Passwords do not match", "error")
           # If passwords dont match
           log_error(user=current_user,ip=request.remote_addr,error="passwords-dont-match")
           return redirect(url_for(showtxt) + '?error=passwords-dont-match')
       else:
+        flash("Incorrect password", "error")
         # If incorrect password
         log_error(user=current_user,ip=request.remote_addr,error="incorrect-password")
         return redirect(url_for(showtxt) + '?error=incorrect-password')
     else:
+      flash("Missing fields", "error")
       # If there were missing fields
       log_error(user=current_user,ip=request.remote_addr,error="missing-fields")
       return redirect(url_for(showtxt) + '?error=missing-fields')

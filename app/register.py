@@ -29,41 +29,55 @@ def show():
     confirm_password=request.form['confirm-password']
     # Checks is values exist
     if username and email and password and confirm_password:
-      # Checks if username exists
-      if (Users.query.filter_by(username=username).count()==0):
-        # Checks if email exists
-        if (Users.query.filter_by(email=email).count()==0):
-          # If the passwords match
-          if password==confirm_password:
-            # Hashes password
-            hashed_password=generate_password_hash(password,method='sha256')
-            # Attempts to create the new user
-            new_user=Users(username=username,email=email,password=hashed_password)
-            db.session.add(new_user)
-            db.session.commit()
-            # Logs user in and logs user creation
-            login_user(new_user)
-            log_create_user(new_user)
-            flash("Account created")
-            return redirect(url_for('home.show') + '?success=account-created')
-          # If passwords dont match
+      # Checks if username length is fine
+      if len(username) <= 20 and len(email) <= 50:
+        # Checks if username exists
+        if (Users.query.filter_by(username=username).count()==0):
+          # Checks if email exists
+          if (Users.query.filter_by(email=email).count()==0):
+            # If the passwords match
+            if password==confirm_password:
+              # Hashes password
+              hashed_password=generate_password_hash(password,method='sha256')
+              # Attempts to create the new user
+              new_user=Users(username=username,email=email,password=hashed_password)
+              db.session.add(new_user)
+              db.session.commit()
+              # Logs user in and logs user creation
+              login_user(new_user)
+              log_create_user(new_user)
+              flash("Account created")
+              return redirect(url_for('home.show') + '?success=account-created')
+            # If passwords dont match
+            else:
+              flash("Passwords don't match", "error")
+              # Logs error
+              log_error(ip=request.remote_addr,error="register-passwords-dont-match")
+              return redirect(url_for(regtxt) + '?error=passwords-dont-match')
+          # If email already exists
           else:
-            flash("Passwords don't match", "error")
+            flash("Email already exists", "error")
             # Logs error
-            log_error(ip=request.remote_addr,error="register-passwords-dont-match")
-            return redirect(url_for(regtxt) + '?error=passwords-dont-match')
-        # If email already exists
+            log_error(ip=request.remote_addr,error="register-email-already-exists")
+            return redirect('/register' + '?error=email-already-exists')
+        # If user already exists
         else:
-          flash("Email already exists", "error")
+          flash("Username already exists", "error")
           # Logs error
-          log_error(ip=request.remote_addr,error="register-email-already-exists")
-          return redirect('/register' + '?error=email-already-exists')
-      # If user already exists
-      else:
-        flash("Username already exists", "error")
+          log_error(ip=request.remote_addr,error="register-username-already-exists")
+          return redirect('/register' + '?error=username-already-exists')
+        # If username length is too long
+      elif len(username) > 20:
+        flash("Username too long", "error")
         # Logs error
-        log_error(ip=request.remote_addr,error="register-username-already-exists")
-        return redirect('/register' + '?error=username-already-exists')
+        log_error(ip=request.remote_addr,error="register-username-too-long")
+        return redirect(url_for(regtxt) + '?error=username-too-long')
+      # If email length is too long
+      else:
+        flash("Email too long", "error")
+        # Logs error
+        log_error(ip=request.remote_addr,error="register-email-too-long")
+        return redirect(url_for(regtxt) + '?error=email-too-long')
     # If there are missing fields
     else:
       flash("Missing fields", "error")

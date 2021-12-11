@@ -1,8 +1,8 @@
-"""initial migration
+"""intial migration
 
-Revision ID: a7fee3c61bfe
+Revision ID: 290ad2fd59a8
 Revises: 
-Create Date: 2021-12-09 18:32:05.678813
+Create Date: 2021-12-11 13:45:08.319273
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'a7fee3c61bfe'
+revision = '290ad2fd59a8'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -46,7 +46,7 @@ def upgrade():
     sa.Column('userroom_id', sa.Integer(), nullable=True),
     sa.Column('message', sa.String(), nullable=True),
     sa.Column('datetime', sa.DateTime(timezone=True), nullable=True),
-    sa.Column('severity', sa.Integer(), nullable=True),
+    sa.Column('severity', sa.String(), nullable=True),
     sa.ForeignKeyConstraint(['room_id'], ['Rooms.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['Users.id'], ),
     sa.ForeignKeyConstraint(['userroom_id'], ['UserRooms.id'], ),
@@ -55,7 +55,7 @@ def upgrade():
     op.create_table('Messages',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('userroom_id', sa.Integer(), nullable=True),
-    sa.Column('message', sa.String(), nullable=True),
+    sa.Column('message', sa.String(length=200), nullable=True),
     sa.Column('datetime', sa.DateTime(timezone=True), nullable=True),
     sa.ForeignKeyConstraint(['userroom_id'], ['UserRooms.id'], ),
     sa.PrimaryKeyConstraint('id')

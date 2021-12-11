@@ -62,15 +62,31 @@ def chat(room_id):
   if request.method=='POST':
     # Stores message
     message=request.form['message']
-    # Gets userroom and creates message for database
-    userroom=UserRooms.query.filter_by(user=current_user.id,room=room_id).one()
-    message_db=Messages(userroom_id=userroom.id,message=message,datetime=datetime.now())
-    # Logs sending message
-    log_send_message(userroom, message)
-    # Adds message to database
-    db.session.add(message_db)
-    db.session.commit()
-    return redirect('/room/'+str(room_id))
+    # Checks message size
+    if len(message) <= 200:
+      # Checks if there are words that are too long in the message
+      for word in message.split():
+        print(word)
+        if len(word) >= 40:
+          flash("Message contains a very long long word", "error")
+          # Logs error
+          log_error(user=current_user,ip=request.remote_addr,error="chat-word-too-long")
+          return redirect('/room/'+str(room_id) + '?error=word-too-long')    
+      # Gets userroom and creates message for database
+      userroom=UserRooms.query.filter_by(user=current_user.id,room=room_id).one()
+      message_db=Messages(userroom_id=userroom.id,message=message,datetime=datetime.now())
+      # Logs sending message
+      log_send_message(userroom, message)
+      # Adds message to database
+      db.session.add(message_db)
+      db.session.commit()
+      return redirect('/room/'+str(room_id))
+    # If message is too long
+    else:
+      flash("Message is too long", "error")
+      # Logs error
+      log_error(user=current_user,ip=request.remote_addr,error="chat-message-too-long")
+      return redirect('/room/'+str(room_id) + '?error=message-too-long')
   # Otherwise...
   else:
     return redirect('/room/'+str(room_id))

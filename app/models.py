@@ -36,7 +36,7 @@ class Messages(db.Model):
   id=db.Column(db.Integer,primary_key=True)
   # Foreign userroom id key
   userroom_id=db.Column(db.Integer,db.ForeignKey('UserRooms.id'))
-  message=db.Column(db.String)
+  message=db.Column(db.String(200))
   datetime=db.Column(db.DateTime(timezone=True))
 
 # Logs table

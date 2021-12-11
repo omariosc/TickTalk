@@ -37,6 +37,18 @@ def show():
           if (Users.query.filter_by(email=email).count()==0):
             # If the passwords match
             if password==confirm_password:
+              # Password should be at least 6 characters
+              if len(password) < 6:
+                flash("Password too short", "error")
+                # Logs error
+                log_error(ip=request.remote_addr,error="register-password-too-short")
+                return redirect('/register' + '?error=password-too-short')
+              # Password should be maximum 20 characters
+              if len(password) > 20:
+                flash("Password too long", "error")
+                # Logs error
+                log_error(ip=request.remote_addr,error="register-password-too-long")
+                return redirect('/register' + '?error=password-too-long')
               # Hashes password
               hashed_password=generate_password_hash(password,method='sha256')
               # Attempts to create the new user

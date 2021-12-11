@@ -46,7 +46,7 @@ def show(room_id):
     # Iteartes through messages
     for message in messages:
       # Appends formatted time to array
-      times.append(message.datetime.strftime("%H:%m %p | %B %d"))
+      times.append(message.datetime.strftime("%H:%M %p | %B %d"))
       # Sets the user id and username
       userid=UserRooms.query.filter_by(id=message.userroom_id).one().user
       username=Users.query.filter_by(id=userid).one().username
